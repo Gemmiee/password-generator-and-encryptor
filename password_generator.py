@@ -13,7 +13,7 @@ def resource_path(relative):
 ctk.set_appearance_mode("light")                                   # "dark", "light" or "system"
 ctk.set_default_color_theme("blue")
 
-app = ctk.CTk()                                                     # the window
+app = ctk.CTk(className="PasswordGenerator")                        # the window; className lets Linux match it to the menu entry + icon
 app.title("Infinite password generator")
 app.geometry("600x600")
 app.configure(fg_color="#EEF3FF")                                 # window background color

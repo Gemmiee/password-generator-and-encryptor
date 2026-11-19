@@ -46,6 +46,13 @@ jobs:
           --collect-data customtkinter
           password_generator.py
 
+      # Linux only: also wrap the build into a .deb for Mint/Ubuntu/Debian
+      - name: Build .deb package
+        if: runner.os == 'Linux'
+        run: |
+          VERSION="${{ github.ref_type == 'tag' && github.ref_name || '0.0.0-dev' }}"
+          packaging/build-deb.sh "$VERSION" dist/PasswordGenerator .
+
       - name: Rename for upload
         shell: bash
         run: mv "${{ matrix.built }}" "${{ matrix.artifact }}"
@@ -53,7 +60,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact }}
-          path: ${{ matrix.artifact }}
+          path: |
+            ${{ matrix.artifact }}
+            *.deb
 
   release:
     needs: build
@@ -69,4 +78,5 @@ jobs:
           files: |
             PasswordGenerator-windows.exe
             PasswordGenerator-linux
+            *.deb
           generate_release_notes: true
