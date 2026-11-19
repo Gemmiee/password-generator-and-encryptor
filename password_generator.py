@@ -7,7 +7,6 @@ import tkinter as tk
 
 
 def resource_path(relative):
-    # PyInstaller unpacks bundled files to sys._MEIPASS, otherwise use this script's folder
     base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base, relative)
 
