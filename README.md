@@ -8,6 +8,18 @@ Pick how strong and how long you want your password, generate it, then run it th
 ![screenshot1](screenshot1.jpg)
 ![screenshot2](screenshot2.jpg)
 
+## 📦 · · Download
+
+Grab the latest version from the [Releases page](https://github.com/Gemmiee/password-generator-and-encryptor/releases/latest), no Python needed!
+
+- **Windows**: download `PasswordGenerator-windows.exe` and double-click it.
+  If Windows shows "Windows protected your PC", click **More info → Run anyway** (the app just isn't signed).
+- **Linux**: download `PasswordGenerator-linux`, then make it runnable and start it:
+  ```bash
+  chmod +x PasswordGenerator-linux
+  ./PasswordGenerator-linux
+  ```
+
 ## 🧃 · · Features
 
 - **3 difficulty levels**
