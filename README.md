@@ -5,8 +5,8 @@ Pick how strong and how long you want your password, generate it, then run it th
 
 ## 🖥️ · · Screenshots
 
-![screenshot1](screenshot1.jpg)
-![screenshot2](screenshot2.jpg)
+![screenshot1](screenshots/screenshot1.jpg)
+![screenshot2](screenshots/screenshot2.jpg)
 
 ## 📦 · · Download
 
