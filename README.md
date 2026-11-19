@@ -14,7 +14,7 @@ Grab the latest version from the [Releases page](https://github.com/Gemmiee/pass
 
 - **Windows**: download `PasswordGenerator-windows.exe` and double-click it.
   If Windows shows "Windows protected your PC", click **More info → Run anyway** (the app just isn't signed).
-- **Linux Mint / Ubuntu / Debian**: download the `.deb` file and double-click it, then click **Install**.
+- **Debian Linux**: download the `.deb` file and double-click it, then click **Install**.
   The app shows up in your menu as **Password Generator**. To remove it later: `sudo apt remove password-generator`
 - **Other Linux**: download `PasswordGenerator-linux`, then make it runnable and start it:
   ```bash
