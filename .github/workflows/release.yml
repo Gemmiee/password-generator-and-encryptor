@@ -1,0 +1,72 @@
+# Builds the app for Windows and Linux whenever a version tag (v1.0, v1.1, ...) is pushed,
+# then attaches both files to a GitHub Release for that tag.
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch: # lets you run it by hand from the Actions tab (builds only, no release)
+
+permissions:
+  contents: write # needed to create the release
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            artifact: PasswordGenerator-windows.exe
+            built: dist/PasswordGenerator.exe
+          # older Ubuntu = works on more Linux versions
+          - os: ubuntu-22.04
+            artifact: PasswordGenerator-linux
+            built: dist/PasswordGenerator
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pyinstaller==6.22.3
+
+      - name: Build with PyInstaller
+        run: >
+          pyinstaller --noconfirm --onefile --windowed
+          --name PasswordGenerator
+          --icon icons/app.ico
+          --add-data "icons:icons"
+          --collect-data customtkinter
+          password_generator.py
+
+      - name: Rename for upload
+        shell: bash
+        run: mv "${{ matrix.built }}" "${{ matrix.artifact }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            PasswordGenerator-windows.exe
+            PasswordGenerator-linux
+          generate_release_notes: true

@@ -1,6 +1,15 @@
 import customtkinter as ctk
 import random
 import hashlib
+import os
+import sys
+import tkinter as tk
+
+
+def resource_path(relative):
+    # PyInstaller unpacks bundled files to sys._MEIPASS, otherwise use this script's folder
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, relative)
 
 ctk.set_appearance_mode("light")                                   # "dark", "light" or "system"
 ctk.set_default_color_theme("blue")
@@ -9,6 +18,13 @@ app = ctk.CTk()                                                     # the window
 app.title("Infinite password generator")
 app.geometry("600x600")
 app.configure(fg_color="#EEF3FF")                                 # window background color
+
+# window/taskbar icon
+if sys.platform.startswith("win"):
+    app.iconbitmap(resource_path("icons/app.ico"))                  # also stops ctk from swapping in its own icon
+else:
+    app_icons = [tk.PhotoImage(file=resource_path(f"icons/icon_{s}.png")) for s in (16, 32, 48, 64)]
+    app.iconphoto(True, *app_icons)
 
 
 # this will play part for our password generator
