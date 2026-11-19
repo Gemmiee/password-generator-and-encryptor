@@ -138,7 +138,7 @@ btn_seg.set("Medium")                                               # set defaul
 lbl_difficulty.pack(side="left", padx=10, pady=10)
 btn_seg.pack(side="left", padx=10, pady=10)
 
-lbl_decor = ctk.CTkLabel(app, text="-------------------------------------------------------", # decorative line
+lbl_decor = ctk.CTkLabel(app, text="-------------------------------------------------------",
                          font=("Courier", 16,),
                          text_color="#4D6BA3")
 lbl_decor.pack(pady=5)
