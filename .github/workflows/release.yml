@@ -1,15 +1,13 @@
-# Builds the app for Windows and Linux whenever a version tag (v1.0, v1.1, ...) is pushed,
-# then attaches both files to a GitHub Release for that tag.
 name: Build & Release
 
 on:
   push:
     tags:
       - "v*"
-  workflow_dispatch: # lets you run it by hand from the Actions tab (builds only, no release)
+  workflow_dispatch:
 
 permissions:
-  contents: write # needed to create the release
+  contents: write
 
 jobs:
   build:
@@ -19,7 +17,6 @@ jobs:
           - os: windows-latest
             artifact: PasswordGenerator-windows.exe
             built: dist/PasswordGenerator.exe
-          # older Ubuntu = works on more Linux versions
           - os: ubuntu-22.04
             artifact: PasswordGenerator-linux
             built: dist/PasswordGenerator
@@ -46,7 +43,6 @@ jobs:
           --collect-data customtkinter
           password_generator.py
 
-      # Linux only: also wrap the build into a .deb for Mint/Ubuntu/Debian
       - name: Build .deb package
         if: runner.os == 'Linux'
         run: |
