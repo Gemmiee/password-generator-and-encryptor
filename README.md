@@ -8,6 +8,9 @@ Pick how strong and how long you want your password, generate it, then run it th
 ![screenshot1](screenshots/screenshot1.jpg)
 ![screenshot2](screenshots/screenshot2.jpg)
 
+### Caesar cipher choice with an extra slider for the key:
+![screenshot3](screenshots/screenshot3.jpg)
+
 ## 📦 · · Download
 
 Grab the latest version from the [Releases page](https://github.com/Gemmiee/password-generator-and-encryptor/releases/latest), no Python needed!
@@ -33,7 +36,7 @@ Grab the latest version from the [Releases page](https://github.com/Gemmiee/pass
   - **SHA-256**
   - **SHA-512**
   - **MD5**
-  - **Caesar cipher** (shifts every character by 3)
+  - **Caesar cipher** (shifts every character by a key you pick, from 3 to 9)
 - **Copy buttons** for both the password and its encrypted version
 - **Clear button** to wipe both fields and start again
 
@@ -51,7 +54,7 @@ Grab the latest version from the [Releases page](https://github.com/Gemmiee/pass
    ```
 2. Install CustomTkinter
    ```bash
-   pip install customtkinter
+   pip install -r requirements.txt
    ```
 3. Run the app
    ```bash
@@ -62,8 +65,9 @@ Grab the latest version from the [Releases page](https://github.com/Gemmiee/pass
 
 1. Pick a difficulty level: **Low**, **Medium** or **Strong**
 2. Drag the slider to choose the password length
-3. Click **Generate Password**
+3. Click **Generate Password** (or type your own password in the box)
 4. Choose an algorithm from the dropdown menu
+   - Picked **Caesar cipher**? A slider appears so you can choose the key (3 to 9)
 5. Click **Encrypt Password** to see the result
 6. Use the **Copy** buttons to copy either one, or **Clear Entries** to start over
 
